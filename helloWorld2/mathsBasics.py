@@ -4,26 +4,26 @@ y = input('second number: ')
 x = float(x)
 y = float(y)
 print('addition')
-first = x + y
-print(first)
+addExample = x + y
+print(addExample)
 print('subtraction')
-second = x - y
-print(second)
+subtractExample = x - y
+print(subtractExample)
 print('division')
-third = x / y
-print(third)
+divExample = x / y
+print(divExample)
 print('division (integer)')
-fourth = x // y
-print(fourth)
+intDivExample = x // y
+print(intDivExample)
 print('modulus')
-fifth = x % y
-print(fifth)
+modExample = x % y
+print(modExample)
 print('multiplication')
-sixth = x * y
-print(sixth)
+multExample = x * y
+print(multExample)
 print('powers to')
-seventh = x ** y
-print(seventh)
-third2 = round(third)
-third3 = abs(third)
-print('rounded division is ' + str(third2) + " and absolute value [z] is " + str(third3))
+powerExample = x ** y
+print(powerExample)
+roundExample = round(divExample)
+absExample = abs(divExample)
+print('rounded division is ' + str(roundExample) + " and absolute value [z] is " + str(absExample))
