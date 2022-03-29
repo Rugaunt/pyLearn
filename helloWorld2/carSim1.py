@@ -1,9 +1,9 @@
-gamerun = True
 carStarted = False
 carMoving = False
+playerCommand = ""
 
 print('Super Realistic Car Simulator, type help for commands!')
-while gamerun:
+while playerCommand.lower() != 'exit':
     playerCommand = input()
     if playerCommand.lower() == 'help':
         print('"Start" Starts the car')
@@ -36,7 +36,6 @@ while gamerun:
         print("You throw yourself out of the vehicle")
         if carMoving:
             print("the car veers off the road and smashes into a tree")
-        break
     else:
         print('sorry Dave, i cant let you do that')
 
