@@ -4,7 +4,7 @@ playerCommand = ""
 
 print('Super Realistic Car Simulator, type help for commands!')
 while playerCommand.lower() != 'exit':
-    playerCommand = input()
+    playerCommand = input('> ')
     if playerCommand.lower() == 'help':
         print('"Start" Starts the car')
         print('"Go" Moves the car')
