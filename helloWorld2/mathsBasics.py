@@ -24,3 +24,6 @@ print(sixth)
 print('powers to')
 seventh = x ** y
 print(seventh)
+third2 = round(third)
+third3 = abs(third)
+print('rounded division is ' + str(third2) + " and absolute value [z] is " + str(third3))
