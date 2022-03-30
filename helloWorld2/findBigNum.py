@@ -9,9 +9,9 @@ theArray = list()
 # make a list of numbers to search
 for i in range(0, arraySize):
     tempNum = random.random() * numSizeMult
-    # theArray[i] = tempNum
     theArray.append(tempNum)
 
+print('the generated list is: ')
 print(theArray)
 
 # search for the biggest number
@@ -19,5 +19,7 @@ bigNum = 0.0
 for i in range(0, len(theArray)):
     if theArray[i] > bigNum:
         bigNum = theArray[i]
+
+
 print('the biggest number in the list is...')
 print(bigNum)
