@@ -1,7 +1,7 @@
 from pathlib import Path
 import openpyxl as xl
+from openpyxl.chart import BarChart, Reference
 
-# testing github
 wb = xl.load_workbook('tester2.xlsx')
 charSheet = wb['Character']
 historySheet = wb['Tester']
@@ -37,6 +37,17 @@ def change_hitpoints(x):
 
 print('losing 5 hitpoints!')
 change_hitpoints(-5)
+values = Reference(historySheet,
+                   min_row=2,
+                   max_row=historySheet.max_row,
+                   min_col=3,
+                   max_col=3
+                   )
+
+chart = BarChart()
+chart.add_data(values)
+historySheet.add_chart(chart, 5, 2)
+
 """
 cell = sheet['a1']  # for some reason its backwards for the next part
 cell2 = sheet.cell(2, 1)  # .cell is row THEN column unlike above!
