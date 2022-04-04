@@ -1,6 +1,11 @@
 from pathlib import Path
 import openpyxl as xl
 
+
+wb = xl.load_workbook('tester2.xlsx')
+charSheet = wb['Character']
+historySheet = wb['Tester']
+
 path = Path()
 print(path.glob('*'))  # all files and directories
 print(path.glob('*.*'))  # all files
@@ -10,12 +15,35 @@ print(path.glob('*.py'))  # all files of type
 for file in path.glob('*.py'):
     print(file)
 
-wb = xl.load_workbook('ExampleLvL15(charSheet)Excel.xlsx')
-sheet = wb['Tester']
-cell = sheet['a1']
-cell2 = sheet.cell(1, 2)
+
+def update_history(current_hp, x, new_hp):
+    # add to end of sheet for history
+    end_location = historySheet.max_row + 1
+    historySheet.cell(end_location, 1).value = current_hp
+    historySheet.cell(end_location, 2).value = x
+    historySheet.cell(end_location, 3).value = new_hp
+
+
+def change_hitpoints(x):
+    current_hp = charSheet.cell(8, 1).value
+    if x < 0:
+        print('losing hit points!')
+    new_hp = x + current_hp
+    charSheet.cell(8, 1).value = new_hp
+    # update history tab
+    update_history(current_hp, x, new_hp)
+    wb.save('tester2.xlsx')
+
+
+print('losing 5 hitpoints!')
+change_hitpoints(-5)
+"""
+cell = sheet['a1']  # for some reason its backwards for the next part
+cell2 = sheet.cell(2, 1)  # .cell is row THEN column unlike above!
 print(cell.value)
 print(cell2.value)
-
-for row in range(1, sheet.max_row + 1):
-    print(row)
+print('testing column...')
+for row in range(2, sheet.max_row + 1):
+    cell = sheet.cell(row, 1)
+    print(cell.value)
+"""
