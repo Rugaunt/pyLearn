@@ -7,7 +7,6 @@ save_file_name = 'test1.xlsx'
 # TODO workbook_file_path = ''
 
 
-
 path = Path()
 print(path.glob('*'))  # all files and directories
 print(path.glob('*.*'))  # all files
