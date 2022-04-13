@@ -32,6 +32,12 @@ def determine_level_of_item(min_item, max_item):
     return selected_item_range
 
 
+# potential error here if no types selected TODO look into this
+def determine_type_of_item(types):
+    type_selection = rdm.randint(1, types.len) - 1
+    return types[type_selection]
+
+
 def generate_wondrous_item(min_item, max_item, types):
     if item_level.get(min_item) <= item_level.get(max_item):
         item_lvl = determine_level_of_item(min_item, max_item)
@@ -41,6 +47,7 @@ def generate_wondrous_item(min_item, max_item, types):
         match item_lvl:
             case 1:
                 prefix = 'Least'
+                affix = affix_minor
             case 2:
                 prefix = prefix_small
                 affix = affix_minor
@@ -59,7 +66,7 @@ def generate_wondrous_item(min_item, max_item, types):
             case 7:
                 prefix = prefix_big
                 affix = affix_major
-
+        the_type = determine_type_of_item(types)
         roll = rdm.randint(1, 100)
         return searcher.process_workbook(tab_name_wondrous_items, roll, prefix, affix)
     else:

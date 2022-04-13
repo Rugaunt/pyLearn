@@ -8,22 +8,23 @@ save_file_name = 'test1.xlsx'
 # TODO workbook_file_path = ''
 
 
-def process_workbook(wondrous_sheet_name, roll, prefix, affix):
+def process_workbook(wondrous_sheet_name, roll, prefix, affix, item_type):
     wb = xl.load_workbook(workbook_file_name)
     item_sheet = wb[wondrous_sheet_name]
+    position_array = []
+    item_name = "None"
+    # find positions of acceptable items in spreadsheet
+    for i in item_sheet.max_row:
+        if item_sheet.cell(i, 1).value == item_type and item_sheet.cell(i, 2) == prefix and item_sheet.cell(i, 3) == affix:
+            position_array.append(i)
 
-
-    history_sheet = wb['Tester']
-    print('losing 5 hitpoints!')
-    change_hitpoints(-5, char_sheet, wb, history_sheet)
-    values = Reference(history_sheet,
-                       min_row=2,
-                       max_row=history_sheet.max_row,
-                       min_col=3,
-                       max_col=3
-                       )
+    for j in len(position_array):
+        if roll <= item_sheet.cell(position_array[j], 4).value:
+            item_name = item_sheet.cell(position_array[j], 5).value
 
     # chart = BarChart()
-    chart.add_data(values)
-    history_sheet.add_chart(chart, 'd4')
-    wb.save(workbook_file_name)
+    # chart.add_data(values)
+    # history_sheet.add_chart(chart, 'd4')
+    # wb.save(workbook_file_name)
+
+    return item_name
