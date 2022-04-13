@@ -30,6 +30,8 @@ class DiceDisplay:
         self.wrists = BooleanVar()
         self.slot_less = BooleanVar()
         self.choose_all_types()
+        self.item_min = StringVar()
+        self.item_max = StringVar()
         in_root.title("Magic Item Generator! (Pathfinder 1e)")
 
         mainframe = ttk.Frame(in_root, padding="3 3 12 12")
@@ -47,7 +49,10 @@ class DiceDisplay:
 
         ttk.Label(mainframe, textvariable=self.result).grid(column=2, row=2, sticky=(W, E))
 
+        # Minimum Item Level Button area
         ttk.Label(mainframe, text="Minimum Item Level").grid(
+            column=BASE_POS_MIN_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW - 2, sticky=W)
+        ttk.Label(mainframe, textvariable=self.item_min).grid(
             column=BASE_POS_MIN_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW - 1, sticky=W)
         ttk.Button(mainframe, text="Any", command=lambda: self.choose_type_min("Any")).grid(
             column=BASE_POS_MIN_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW, sticky=W)
@@ -64,7 +69,10 @@ class DiceDisplay:
         ttk.Button(mainframe, text="Greater Major", command=lambda: self.choose_type_min("Greater Major")).grid(
             column=BASE_POS_MIN_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW + 6, sticky=W)
 
+        # Maximum item level button area
         ttk.Label(mainframe, text="Maximum Item Level").grid(
+            column=BASE_POS_MAX_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW - 2, sticky=W)
+        ttk.Label(mainframe, textvariable=self.item_max).grid(
             column=BASE_POS_MAX_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW - 1, sticky=W)
         ttk.Button(mainframe, text="Any", command=lambda: self.choose_type_max("Any")).grid(
             column=BASE_POS_MAX_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW, sticky=W)
@@ -81,6 +89,7 @@ class DiceDisplay:
         ttk.Button(mainframe, text="Greater Major", command=lambda: self.choose_type_max("Greater Major")).grid(
             column=BASE_POS_MAX_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW + 6, sticky=W)
 
+        # item type checklists
         ttk.Label(mainframe, text="Item Type").grid(
             column=BASE_POS_TYPE_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW - 1, sticky=W)
         ttk.Button(mainframe, text="All ON", command=lambda: self.choose_all_types()).grid(
@@ -118,10 +127,6 @@ class DiceDisplay:
         ttk.Checkbutton(mainframe, text="Slot-less", variable=self.slot_less).grid(
             column=BASE_POS_TYPE_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW + 13, sticky=W)
 
-
-        #ttk.Checkbutton()
-        #    .Label(mainframe, textvariable=self.belt.get()).grid(
-         #   column=BASE_POS_TYPE_ITEM_COL+1, row=START_POS_ROW_MIN_TYPE_ROW+2, sticky=W)
         ttk.Label(mainframe, text="%self.belt").grid(column=BASE_POS_TYPE_ITEM_COL+1, row=START_POS_ROW_MIN_TYPE_ROW+3, sticky=W)
         ttk.Label(mainframe, text="number of dice").grid(column=3, row=1, sticky=W)
         ttk.Label(mainframe, text="roll: ").grid(column=1, row=2, sticky=E)
@@ -132,6 +137,10 @@ class DiceDisplay:
 
         dice_entry.focus()
         in_root.bind("<Return>", self.calculate)
+
+    def make_an_item(self):
+        name =
+        return name
 
     def calculate(self, *args):
         try:
