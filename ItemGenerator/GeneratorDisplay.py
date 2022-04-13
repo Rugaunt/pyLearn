@@ -9,9 +9,6 @@ BASE_POS_MAX_ITEM_COL = 3
 BASE_POS_TYPE_ITEM_COL = 5
 
 
-
-
-
 class DiceDisplay:
     def __init__(self, in_root):
         # STARTPOS_ROW_MIN_TYPE_ROW = 4
@@ -149,7 +146,7 @@ class DiceDisplay:
     def make_an_item(self):
         type_list = self.make_type_list()
         name = ItemGenerator.generate_wondrous_item(self.item_min.get(), self.item_max.get(), type_list)
-        return name
+        self.item_name.set(name)
 
     # Wording Matches excel doc used
     def make_type_list(self):
