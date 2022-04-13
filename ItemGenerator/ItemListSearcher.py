@@ -4,7 +4,7 @@ import openpyxl as xl
 
 workbook_file_name = 'ItemLists.xlsx'
 save_file_name = 'test1.xlsx'
-# wondrous_sheet_name = 'WondrousItems'
+
 # TODO workbook_file_path = ''
 
 
@@ -14,8 +14,8 @@ def process_workbook(wondrous_sheet_name, roll, prefix, affix, item_type):
     position_array = []
     item_name = "None"
     print("process values for generator: " + str(roll) + ' ' + prefix + affix + item_type)  # debugging
-    # find positions of acceptable items in spreadsheet
 
+    # find positions of acceptable items in spreadsheet
     for i in range(item_sheet.max_row):
         i_loc = i+1  # excel starts at 1 not 0
 
@@ -30,10 +30,5 @@ def process_workbook(wondrous_sheet_name, roll, prefix, affix, item_type):
             item_name = item_sheet.cell(position_array[j], 5).value
         last_max_threshold = item_sheet.cell(position_array[j], 4).value
     print(item_name)
-
-    # chart = BarChart()
-    # chart.add_data(values)
-    # history_sheet.add_chart(chart, 'd4')
-    # wb.save(workbook_file_name)
 
     return item_name

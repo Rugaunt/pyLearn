@@ -11,10 +11,6 @@ BASE_POS_TYPE_ITEM_COL = 5
 
 class DiceDisplay:
     def __init__(self, in_root):
-        # STARTPOS_ROW_MIN_TYPE_ROW = 4
-        # BASE_POS_MIN_ITEM_COL = 1
-        # BASE_POS_MAX_ITEM_COL = 3
-        # BASE_POS_TYPE_ITEM_COL = 5
         self.belt = BooleanVar()
         self.body = BooleanVar()
         self.chest = BooleanVar()
@@ -43,17 +39,12 @@ class DiceDisplay:
         self.dice_number = StringVar()
         self.die_type = StringVar()
         self.die_name = StringVar()
-        # dice_entry = ttk.Entry(mainframe, width=7, textvariable=self.dice_number)
-        # dice_entry.grid(column=2, row=1, sticky=(W, E))
         self.result = StringVar()
-        # ttk.Label(mainframe, textvariable=self.die_name).grid(column=1, row=1, sticky=(W, E))
 
-        # ttk.Label(mainframe, textvariable=self.result).grid(column=2, row=2, sticky=(W, E))
         # Main Display
         ttk.Label(mainframe, text="Item: ").grid(column=1, row=1, sticky=W)
         ttk.Label(mainframe, textvariable=self.item_name).grid(column=2, row=1, sticky=W)
         ttk.Button(mainframe, text="CREATE!", command=lambda: self.make_an_item()).grid(column=4, row=1, sticky=W)
-
 
         # Minimum Item Level Button area
         ttk.Label(mainframe, text="Minimum Item Level").grid(
@@ -133,10 +124,6 @@ class DiceDisplay:
         ttk.Checkbutton(mainframe, text="Slot-less", variable=self.slot_less).grid(
             column=BASE_POS_TYPE_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW + 13, sticky=W)
 
-
-        # ttk.Label(mainframe, text="roll: ").grid(column=1, row=2, sticky=E)
-        # ttk.Label(mainframe, text="total").grid(column=3, row=2, sticky=W)
-
         for child in mainframe.winfo_children():
             child.grid_configure(padx=5, pady=5)
 
@@ -182,7 +169,7 @@ class DiceDisplay:
             self.result.set(int(dice.dice(self.dice_number.get(), self.die_type.get())))
         except ValueError:
             pass
-    """
+
     def update_dice_name(self, *args):
         self.die_name.set("D" + self.die_type.get())
 
@@ -197,7 +184,7 @@ class DiceDisplay:
             self.result.set(dice.dice(d_number, die_size))
         except ValueError:
             self.result.set("Error!")
-
+    """
     def choose_type_min(self, item_minimum):
         self.item_min.set(item_minimum)
 
