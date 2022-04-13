@@ -15,7 +15,9 @@ def process_workbook(wondrous_sheet_name, roll, prefix, affix, item_type):
     item_name = "None"
     # find positions of acceptable items in spreadsheet
     for i in item_sheet.max_row:
-        if item_sheet.cell(i, 1).value == item_type and item_sheet.cell(i, 2) == prefix and item_sheet.cell(i, 3) == affix:
+        if item_sheet.cell(i, 1).value == item_type and \
+                item_sheet.cell(i, 2) == prefix and \
+                item_sheet.cell(i, 3) == affix:
             position_array.append(i)
 
     for j in len(position_array):

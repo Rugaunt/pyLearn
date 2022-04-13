@@ -1,6 +1,6 @@
 # generate some items!
 import random as rdm
-import ItemListSearcher as searcher
+import ItemListSearcher as Searcher
 
 tab_name_wondrous_items = 'WondrousItems'
 
@@ -68,10 +68,9 @@ def generate_wondrous_item(min_item, max_item, types):
                 affix = affix_major
         the_type = determine_type_of_item(types)
         roll = rdm.randint(1, 100)
-        return searcher.process_workbook(tab_name_wondrous_items, roll, prefix, affix)
+        return Searcher.process_workbook(tab_name_wondrous_items, roll, prefix, affix, the_type)
     else:
         return "Error: Minimum Item too high"
 
 
-class ItemGenerator:
-    pass
+
