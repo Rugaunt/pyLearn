@@ -13,16 +13,22 @@ def process_workbook(wondrous_sheet_name, roll, prefix, affix, item_type):
     item_sheet = wb[wondrous_sheet_name]
     position_array = []
     item_name = "None"
+    # print("process values for generator: " + str(roll) + ' ' + prefix + affix + item_type)  # debugging
     # find positions of acceptable items in spreadsheet
-    for i in item_sheet.max_row:
-        if item_sheet.cell(i, 1).value == item_type and \
-                item_sheet.cell(i, 2) == prefix and \
-                item_sheet.cell(i, 3) == affix:
-            position_array.append(i)
 
-    for j in len(position_array):
+    for i in range(item_sheet.max_row):
+        i_loc = i+1  # excel starts at 1 not 0
+
+        if item_sheet.cell(i_loc, 1).value == item_type:
+            if item_sheet.cell(i_loc, 2).value == prefix:
+                if item_sheet.cell(i_loc, 3).value == affix:
+                    position_array.append(i_loc)
+    print(position_array)
+    for j in range(len(position_array)):
         if roll <= item_sheet.cell(position_array[j], 4).value:
             item_name = item_sheet.cell(position_array[j], 5).value
+
+    print(item_name)
 
     # chart = BarChart()
     # chart.add_data(values)

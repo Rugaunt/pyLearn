@@ -24,7 +24,7 @@ affix_major = 'Major'
 def determine_level_of_item(min_item, max_item):
     min_it = item_level.get(min_item)
     max_it = item_level.get(max_item)
-    item_range = min_it - max_it
+    item_range = max_it - min_it
     if item_range != 1:
         selected_item_range = min_it + rdm.randint(1, item_range) - 1
     else:
@@ -34,11 +34,15 @@ def determine_level_of_item(min_item, max_item):
 
 # potential error here if no types selected TODO look into this
 def determine_type_of_item(types):
-    type_selection = rdm.randint(1, types.len) - 1
+    print(len(types))
+    print(types)
+    type_selection = rdm.randint(1, len(types)) - 1
     return types[type_selection]
 
 
 def generate_wondrous_item(min_item, max_item, types):
+    print(min_item)
+    print((item_level.get(min_item)))
     if item_level.get(min_item) <= item_level.get(max_item):
         item_lvl = determine_level_of_item(min_item, max_item)
 
@@ -68,6 +72,7 @@ def generate_wondrous_item(min_item, max_item, types):
                 affix = affix_major
         the_type = determine_type_of_item(types)
         roll = rdm.randint(1, 100)
+        print(roll)
         return Searcher.process_workbook(tab_name_wondrous_items, roll, prefix, affix, the_type)
     else:
         return "Error: Minimum Item too high"

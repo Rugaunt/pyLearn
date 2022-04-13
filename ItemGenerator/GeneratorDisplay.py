@@ -32,7 +32,9 @@ class DiceDisplay:
         self.slot_less = BooleanVar()
         self.choose_all_types()
         self.item_min = StringVar()
+        self.item_min.set("Any")
         self.item_max = StringVar()
+        self.item_max.set("Any")
         self.item_name = StringVar()
         in_root.title("Magic Item Generator! (Pathfinder 1e)")
 
