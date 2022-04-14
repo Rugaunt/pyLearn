@@ -6,13 +6,15 @@ tab_name_wondrous_items = 'WondrousItems'
 
 minimum_item_value = ""
 item_level = {
+    "All": 1,
     "Least": 1,
     "Lesser Minor": 2,
     "Greater Minor": 3,
     "Lesser Medium": 4,
     "Greater Medium": 5,
     "Lesser Major": 6,
-    "Greater Major": 7
+    "Greater Major": 7,
+    "Any": 7
 }
 prefix_big = 'Greater'
 prefix_small = 'Lesser'
@@ -24,15 +26,15 @@ affix_major = 'Major'
 def determine_level_of_item(min_item, max_item):
     min_it = item_level.get(min_item)
     max_it = item_level.get(max_item)
-    item_range = max_it - min_it
-    if item_range != 1:
-        selected_item_range = min_it + rdm.randint(1, item_range) - 1
-    else:
+    item_range = max_it - min_it + 1
+    # print("DEBUG-dlof: " + str(min_it) + " " + str(max_it) + " " + str(item_range))
+    if item_range == 1:
         selected_item_range = min_it
+    else:
+        selected_item_range = min_it + rdm.randint(1, item_range) - 1
     return selected_item_range
 
 
-# potential error here if no types selected TODO look into this
 def determine_type_of_item(types):
     print(len(types))
     print(types)
@@ -70,10 +72,14 @@ def generate_wondrous_item(min_item, max_item, types):
             case 7:
                 prefix = prefix_big
                 affix = affix_major
-        the_type = determine_type_of_item(types)
-        roll = rdm.randint(1, 100)
-        print(roll)
-        return Searcher.process_workbook(tab_name_wondrous_items, roll, prefix, affix, the_type)
+
+        if len(types) > 0:
+            the_type = determine_type_of_item(types)
+            roll = rdm.randint(1, 100)
+            print("roll: " + str(roll))
+            return Searcher.process_workbook(tab_name_wondrous_items, roll, prefix, affix, the_type)
+        else:
+            return "Error: No Type Selected"
     else:
         return "Error: Minimum Item too high"
 

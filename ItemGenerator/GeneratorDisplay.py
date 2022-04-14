@@ -3,7 +3,7 @@ from tkinter import ttk
 import ItemGenerator
 # import dice
 
-START_POS_ROW_MIN_TYPE_ROW = 4
+START_POS_ROW_MIN_TYPE_ROW = 5
 BASE_POS_MIN_ITEM_COL = 1
 BASE_POS_MAX_ITEM_COL = 3
 BASE_POS_TYPE_ITEM_COL = 5
@@ -43,15 +43,15 @@ class DiceDisplay:
 
         # Main Display
         ttk.Label(mainframe, text="Item: ").grid(column=1, row=1, sticky=W)
-        ttk.Label(mainframe, textvariable=self.item_name).grid(column=2, row=1, sticky=W)
-        ttk.Button(mainframe, text="CREATE!", command=lambda: self.make_an_item()).grid(column=4, row=1, sticky=W)
+        ttk.Label(mainframe, textvariable=self.item_name).grid(column=3, row=1, sticky=W)
+        ttk.Button(mainframe, text="CREATE!", command=lambda: self.make_an_item()).grid(column=1, row=2, sticky=W)
 
         # Minimum Item Level Button area
         ttk.Label(mainframe, text="Minimum Item Level").grid(
             column=BASE_POS_MIN_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW - 2, sticky=W)
         ttk.Label(mainframe, textvariable=self.item_min).grid(
             column=BASE_POS_MIN_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW - 1, sticky=W)
-        ttk.Button(mainframe, text="Any", command=lambda: self.choose_type_min("Any")).grid(
+        ttk.Button(mainframe, text="All", command=lambda: self.choose_type_min("All")).grid(
             column=BASE_POS_MIN_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW, sticky=W)
         ttk.Button(mainframe, text="Lesser Minor", command=lambda: self.choose_type_min("Lesser Minor")).grid(
             column=BASE_POS_MIN_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW + 1, sticky=W)
@@ -71,8 +71,8 @@ class DiceDisplay:
             column=BASE_POS_MAX_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW - 2, sticky=W)
         ttk.Label(mainframe, textvariable=self.item_max).grid(
             column=BASE_POS_MAX_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW - 1, sticky=W)
-        ttk.Button(mainframe, text="Any", command=lambda: self.choose_type_max("Any")).grid(
-            column=BASE_POS_MAX_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW, sticky=W)
+        # ttk.Button(mainframe, text="Any", command=lambda: self.choose_type_max("Any")).grid(
+            # column=BASE_POS_MAX_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW, sticky=W)
         ttk.Button(mainframe, text="Lesser Minor", command=lambda: self.choose_type_max("Lesser Minor")).grid(
             column=BASE_POS_MAX_ITEM_COL, row=START_POS_ROW_MIN_TYPE_ROW + 1, sticky=W)
         ttk.Button(mainframe, text="Greater Minor", command=lambda: self.choose_type_max("Greater Minor")).grid(
