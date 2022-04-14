@@ -74,7 +74,11 @@ def generate_wondrous_item(min_item, max_item, types):
                 affix = affix_major
 
         if len(types) > 0:
-            the_type = determine_type_of_item(types)
+            # no other magic items except slotless for Least Category
+            if prefix == "Least":
+                the_type = "Slotless"
+            else:
+                the_type = determine_type_of_item(types)
             roll = rdm.randint(1, 100)
             print("roll: " + str(roll))
             return Searcher.process_workbook(tab_name_wondrous_items, roll, prefix, affix, the_type)
